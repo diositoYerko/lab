@@ -38,10 +38,13 @@ char textoExtraido[n][n];
      	 printf("%s ", textoExtraido[i]);
 	 printf("%d", i);
 	 salto;
-    }
+    	}
 
+/*Transformamos los numeros del tablero de char a int*/
 ttablero=atoi(textoExtraido[0]);
 bdestruir=atoi(textoExtraido[1]);
+tdisponibles=atoi(textoExtraido[9]);
+*/FIN*/
 
 }
 
