@@ -44,7 +44,7 @@ char textoExtraido[n][n];
 ttablero=atoi(textoExtraido[0]);
 bdestruir=atoi(textoExtraido[1]);
 tdisponibles=atoi(textoExtraido[9]);
-*/FIN*/
+/*FIN*/
 
 }
 
