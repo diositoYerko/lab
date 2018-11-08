@@ -34,8 +34,8 @@ char textoExtraido[n][n];
 
 	for ( i = 0; i <10 ; i++)
 	{
-     fscanf(archivo, "%s" , textoExtraido[i]);
-     printf("%s ", textoExtraido[i]);
+     	 fscanf(archivo, "%s" , textoExtraido[i]);
+     	 printf("%s ", textoExtraido[i]);
 	 printf("%d", i);
 	 salto;
     }
