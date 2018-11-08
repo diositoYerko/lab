@@ -6,7 +6,7 @@
 #define salto printf("\n")
 
 
-int ttablero; int bdestruir; int tdisponibles;
+int ttablero; int bdestruir; int tdisponibles; int tablero[n][n];
 
 void fArchivo()
 {
@@ -40,6 +40,8 @@ char textoExtraido[n][n];
 	 salto;
     	}
 
+fclose(archivo);
+
 /*Transformamos los numeros del tablero de char a int*/
 ttablero=atoi(textoExtraido[0]);
 bdestruir=atoi(textoExtraido[1]);
@@ -48,7 +50,13 @@ tdisponibles=atoi(textoExtraido[9]);
 
 }
 
+void llenaTablero()
+{
+
+}
+
 void main()
 {
 	fArchivo();
+	ImprimeTablero(tablero,ttablero);
 }

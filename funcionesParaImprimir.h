@@ -1,4 +1,4 @@
-#define N 26
+#define N 500
 
 void LimpiaPantalla(void)
 {
