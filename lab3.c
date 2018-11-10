@@ -2,19 +2,17 @@
 #include <stdlib.h>
 #include <string.h>
 #include "funcionesParaImprimir.h"
-#define n 500
 #define salto printf("\n")
 
 
-int ttablero; int bdestruir; int tdisponibles; int tablero[n][n];
+int ttablero; int bdestruir; int tdisponibles; int tablero[N][N];
+char linea1[7]; char linea2[7]; char linea3[7]; char linea4[7]; char linea5[7];
+char linea6[7]; char linea7[7]; char linea8[7];
 
 void fArchivo()
 {
 FILE *archivo;
-char nombre_archivo[100];
-int ciclo=0;
-int i;
-char textoExtraido[n][n];
+char nombre_archivo[100]; int ciclo=0; int i; char textoExtraido[N][N];
 
 	while(ciclo==0)
 	{
@@ -32,7 +30,7 @@ char textoExtraido[n][n];
 		}
 	}
 
-	for ( i = 0; i <10 ; i++)
+	for (i=0;i<10;i++)
 	{
      	 fscanf(archivo, "%s" , textoExtraido[i]);
      	 printf("%s ", textoExtraido[i]);
@@ -48,6 +46,16 @@ bdestruir=atoi(textoExtraido[1]);
 tdisponibles=atoi(textoExtraido[9]);
 /*FIN*/
 
+/*Copiamos cadenas*/
+strcpy(linea1, textoExtraido[2]);
+strcpy(linea2, textoExtraido[3]);
+strcpy(linea3, textoExtraido[4]);
+strcpy(linea4, textoExtraido[5]);
+strcpy(linea5, textoExtraido[6]);
+strcpy(linea6, textoExtraido[7]);
+strcpy(linea7, textoExtraido[8]);
+/*FIN*/
+
 }
 
 void llenaTablero()
@@ -58,5 +66,4 @@ void llenaTablero()
 void main()
 {
 	fArchivo();
-	ImprimeTablero(tablero,ttablero);
 }
