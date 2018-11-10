@@ -21,11 +21,11 @@ char nombre_archivo[100]; int ciclo=0; int i; char textoExtraido[N][N];
 	 archivo = fopen(nombre_archivo,"r");
 
 		if(archivo==NULL)
-        {
+        	{
 		 printf("Ingrese nombre archivo: ");
 		}
 		else
-        {
+        	{
 		 break;
 		}
 	}
