@@ -5,9 +5,9 @@
 #define salto printf("\n")
 
 
-int ttablero; int bdestruir; int tdisponibles; int tablero[N][N];
-char linea1[7]; char linea2[7]; char linea3[7]; char linea4[7]; char linea5[7];
-char linea6[7]; char linea7[7]; char linea8[7];
+int ttablero; int nembarcaciones; int tdisponibles; int tablero[N][N];
+char linea1[1]; char linea2[1]; char linea3[7]; char linea4[7]; char linea5[7];
+char linea6[7]; char linea7[7]; char linea8[7]; char linea9[7]; char linea10[1];
 
 void fArchivo()
 {
@@ -38,9 +38,6 @@ char nombre_archivo[100]; int ciclo=0; int i; char textoExtraido[N][N];
 	for (i=0;i<10;i++)
 	{
      fscanf(archivo, "%s" , textoExtraido[i]);
-     printf("%s ", textoExtraido[i]);
-	 printf("%d", i);
-	 salto;
     }
 /*FIN*/
 
@@ -48,21 +45,23 @@ char nombre_archivo[100]; int ciclo=0; int i; char textoExtraido[N][N];
 fclose(archivo);
 /*FIN*/
 
-/*Transformamos los numeros del tablero de char a int*/
-ttablero = atoi(textoExtraido[0]);
-bdestruir = atoi(textoExtraido[1]);
-tdisponibles = atoi(textoExtraido[9]);
+/*Copiamos cadenas para obtener datos*/
+strcpy(linea1, textoExtraido[0]);
+strcpy(linea2, textoExtraido[1]);
+strcpy(linea3, textoExtraido[2]);
+strcpy(linea4, textoExtraido[3]);
+strcpy(linea5, textoExtraido[4]);
+strcpy(linea6, textoExtraido[5]);
+strcpy(linea7, textoExtraido[6]);
+strcpy(linea8, textoExtraido[7]);
+strcpy(linea9, textoExtraido[8]);
+strcpy(linea10, textoExtraido[9]);
 /*FIN*/
 
-/*Copiamos cadenas para llenar nuestra matriz*/
-strcpy(linea1, textoExtraido[2]);
-strcpy(linea2, textoExtraido[3]);
-strcpy(linea3, textoExtraido[4]);
-strcpy(linea4, textoExtraido[5]);
-strcpy(linea5, textoExtraido[6]);
-strcpy(linea6, textoExtraido[7]);
-strcpy(linea7, textoExtraido[8]);
-strcpy(linea8, textoExtraido[9]);
+/*Transformamos los numeros del tablero de char a int*/
+ttablero = atoi(linea1);
+nembarcaciones = atoi(linea2);
+tdisponibles = atoi(linea3);
 /*FIN*/
 
 }
@@ -109,9 +108,7 @@ int i,j;
 			}
 		}
 	}
-
 ImprimeTablero(tablero,ttablero);
-
 }
 
 void main()
