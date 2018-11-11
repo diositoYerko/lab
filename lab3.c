@@ -18,20 +18,22 @@ FILE *archivo;
 char nombre_archivo[100]; int ciclo=0; int i; char textoExtraido[N][N];
 
 /*Ciclo que abre nuestro archivo si el texto coincide con el nombre "tablero1.txt"*/
+
+    printf("Ingrese nombre archivo: ");
 	while(ciclo==0)
 	{
-	 printf("Ingrese nombre archivo: ");
-	 scanf("%100[^\n]", nombre_archivo);
+	 scanf("%s", nombre_archivo);
 	 archivo = fopen(nombre_archivo,"r");
 
 		if(archivo==NULL)
         {
-		 printf("Ingrese nombre archivo: ");
+         printf("Ingrese nombre archivo: ");
 		}
 		else
         {
-		 break;
+         break;
 		}
+
 	}
 /*FIN*/
 
