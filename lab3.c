@@ -7,7 +7,8 @@
 
 int ttablero; int nembarcaciones; int tdisponibles; int tablero[N][N];
 char linea1[1]; char linea2[1]; char linea3[7]; char linea4[7]; char linea5[7];
-char linea6[7]; char linea7[7]; char linea8[7]; char linea9[7]; char linea10[1];
+char linea6[7]; char linea7[7]; char linea8[7]; char linea9[7]; char linea10[7];
+char linea11[1];
 
 void fArchivo()
 {
@@ -35,9 +36,13 @@ char nombre_archivo[100]; int ciclo=0; int i; char textoExtraido[N][N];
 /*FIN*/
 
 /*Copiamos los datos del archivo a un arreglo*/
-	for (i=0;i<10;i++)
+	for (i=0;i<11;i++)
 	{
      fscanf(archivo, "%s" , textoExtraido[i]);
+     printf("\n%s    ",textoExtraido[i]);
+     printf("#linea archivo ");
+     printf("%d#    ",i+1);
+     printf(" espacio TextoExtraido[%d]",i);
     }
 /*FIN*/
 
@@ -56,59 +61,100 @@ strcpy(linea7, textoExtraido[6]);
 strcpy(linea8, textoExtraido[7]);
 strcpy(linea9, textoExtraido[8]);
 strcpy(linea10, textoExtraido[9]);
+strcpy(linea11, textoExtraido[10]);
 /*FIN*/
 
 /*Transformamos los numeros del tablero de char a int*/
 ttablero = atoi(linea1);
 nembarcaciones = atoi(linea2);
-tdisponibles = atoi(linea3);
+tdisponibles = atoi(linea11);
 /*FIN*/
-
+salto; salto; salto;
 }
 
 void fTablero()
 {
-int i,j;
+int i,j,k;
 
-	for(i=0;i<ttablero+1;i++)
-	{
-		for(j=0;j<ttablero+1;j++)
-		{
-			if(i==0)
-			{
-			tablero[i][j]=linea1[i];
-			}
-			if(i==1)
-			{
-			tablero[i][j]=linea2[i];
-			}
-			if(i==2)
-			{
-			tablero[i][j]=linea3[i];
-			}
-			if(i==3)
-			{
-			tablero[i][j]=linea4[i];
-			}
-			if(i==4)
-			{
-			tablero[i][j]=linea5[i];
-			}
-			if(i==5)
-			{
-			tablero[i][j]=linea6[i];
-			}
-			if(i==6)
-			{
-			tablero[i][j]=linea7[i];
-			}
-			if(i==7)
-			{
-			tablero[i][j]=linea8[i];
-			}
-		}
-	}
+/*Rellenamos Matriz*/
+//Linea A:
+    for(i=0;i<ttablero;i++)
+    {
+        for(j=0;j<ttablero;j++)
+        {
+            for(k=0;k<ttablero;k++)
+                tablero[i][j]=linea3[k];
+        }
+    }
+//Linea B:
+     for(i=1;i<ttablero;i++)
+    {
+        for(j=0;j<ttablero;j++)
+        {
+            for(k=0;k<ttablero;k++)
+                tablero[i][j]=linea4[k];
+        }
+    }
+//Linea C:
+     for(i=2;i<ttablero;i++)
+    {
+        for(j=0;j<ttablero;j++)
+        {
+            for(k=0;k<ttablero;k++)
+                tablero[i][j]=linea5[k];
+        }
+    }
+//Linea D:
+     for(i=3;i<ttablero;i++)
+    {
+        for(j=0;j<ttablero;j++)
+        {
+            for(k=0;k<ttablero;k++)
+                tablero[i][j]=linea6[k];
+        }
+    }
+//Linea E:
+     for(i=4;i<ttablero;i++)
+    {
+        for(j=0;j<ttablero;j++)
+        {
+            for(k=0;k<ttablero;k++)
+                tablero[i][j]=linea7[k];
+        }
+    }
+//Linea F:
+     for(i=5;i<ttablero;i++)
+    {
+        for(j=0;j<ttablero;j++)
+        {
+            for(k=0;k<ttablero;k++)
+                tablero[i][j]=linea8[k];
+        }
+    }
+//Linea G:
+     for(i=6;i<ttablero;i++)
+    {
+        for(j=0;j<ttablero;j++)
+        {
+            for(k=0;k<ttablero;k++)
+                tablero[i][j]=linea9[k];
+        }
+    }
+//Linea H:
+     for(i=7;i<ttablero;i++)
+    {
+        for(j=0;j<ttablero;j++)
+        {
+            for(k=0;k<ttablero;k++)
+                tablero[i][j]=linea10[k];
+        }
+    }
+/*FIM*/
+
+/*Imprimimos Tablero*/
 ImprimeTablero(tablero,ttablero);
+/*FIN*/
+
 }
 
 void main()
