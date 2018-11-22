@@ -23,6 +23,7 @@ char lineaA[7],lineaB[7],lineaC[7],lineaD[7],lineaE[7],lineaF[7],lineaG[7],linea
 
 void fArchivo(void)
 {
+
 int num1,num2,num3;
 
 FILE *archivo;
@@ -42,8 +43,8 @@ char nombre_archivo[100]; int ciclo=0; int i; char textoExtraido[N][N];
 		}
 		else
         {
-         ciclo++;
-        /*evaluamos break; pero no esta dentro de la materia vista en clases. (cumple la misma función que ciclo++)*/
+         break;
+        /*ciclo++; y break; cumplen la misma funcion.*/
 		}
 
 	}
@@ -51,9 +52,9 @@ char nombre_archivo[100]; int ciclo=0; int i; char textoExtraido[N][N];
 
 /*Copiamos los datos del archivo a un arreglo por linea*/
     /*Linea 1*/
-    fscanf(archivo, "%d" , &num1);
+    fscanf(archivo,"%d", &num1);
     /*Linea 2*/
-    fscanf(archivo, "%d", &num2);
+    fscanf(archivo,"%d", &num2);
     /*Linea 3*/
     fscanf(archivo,"%s",lineaA);
 	/*Linea 4*/
@@ -85,10 +86,12 @@ fclose(archivo);
 /*FIN*/
 
 LimpiaPantalla();
+
 }
 
 void rellenarTablero(void)
 {
+
 int i,j,k;
 
 /*Copiamos los datos a la matriz*/
@@ -186,16 +189,40 @@ int i,j,k;
 
 void fJuego(void)
 {
-    char fila; int f; int c; int ciclo;
-    /*Comienza el juego*/
-    //while(tdisponibles>0)
-    //{
-    ImprimeTablero(tablero,ttablero); salto; salto;
-    printf("Total barcos: %d - Tiros Disponibles: %d",nembarcaciones,tdisponibles); salto; salto;
-    printf("Ingrese fila: ");
-    scanf(" %c", &fila);
+    char fila; int f,c,columna,ciclo;
+	ciclo=0;
 
-        /*Identificamos numero de fila a partir del caracter ingresado*/
+    /*Comienza el juego*/
+	ImprimeTablero(tablero,ttablero); salto; salto;
+    while(tdisponibles>0)
+    {
+    printf("Total barcos: %d - Tiros Disponibles: %d",nembarcaciones,tdisponibles); salto; salto;
+
+	/*Fila*/
+
+	printf("Ingrese fila: ");
+	while(ciclo==0)
+	{
+    	scanf(" %c", &fila);
+		fflush(stdin);
+
+		/*Comprobamos si fila corresponde a una letra, si no re-ingresa*/
+		if( !((fila=='A')or(fila=='a')or(fila=='B')or(fila=='b')or(fila=='C')or(fila=='c')or
+			(fila=='D')or(fila=='d')or(fila=='E')or(fila=='e')or(fila=='F')or(fila=='f')or
+			(fila=='G')or(fila=='g')or(fila=='H')or(fila=='h')) )
+		{
+			printf("Ingrese fila: ");
+		}
+		else
+		{
+			break;
+		}
+		/*FIN*/
+	}
+
+		/*FIN*/
+
+        /*Asignamos el valor correspondiente al espacio de la matriz*/
         if( (fila=='A')or(fila=='a') )
             f=0;
         if( (fila=='B')or(fila=='b') )
@@ -213,11 +240,76 @@ void fJuego(void)
         if( (fila=='H')or(fila=='h') )
             f=7;
         /*FIN*/
-    printf("Ingrese columna: ");
-    scanf("%d",&c);
-        /*Preguntamos en nuestro tablero si la posicion coincide con una parte de una nave*/
 
-    //}
+	/*FIN*/
+	
+	printf("Ingrese columna: ");
+	while(ciclo==0)
+	{
+    	scanf("%d",&columna);
+		fflush(stdin);
+
+		/*Comprobamos si la columna ingresada es valida si no re-ingresa*/
+		if( !((columna>=1)and(columna<=8)) )
+		{
+			printf("Ingrese columna: ");
+		}
+		else
+		{
+			break;
+		}
+		/*FIN*/
+	}
+    
+    
+		/*Asignamos el valor correspondiente al espacio de la matriz*/
+		if( columna==1)
+		{
+            c=0;
+		}
+        if( columna==2)
+		{
+            c=1;
+		}
+        if( columna==3)
+		{
+            c=2;
+		}
+        if( columna==4)
+		{
+            c=3;
+		}
+        if( columna==5)
+		{
+            c=4;
+		}
+        if( columna==6)
+		{
+            c=5;
+		}
+        if( columna==7)
+		{
+            c=6;
+		}
+        if( columna==8)
+		{
+            c=7;
+		}
+		/*FIN*/
+
+		/*Identificamos si en la cordenada hay una nave*/
+		if( tablero[f][c]=='N' )
+		{
+			tablero[f][c]='D';
+		}
+		else
+		{
+			tablero[f][c]='E';
+		}
+		LimpiaPantalla(); ImprimeTablero(tablero,ttablero); salto; salto;
+		tdisponibles--;
+    }
+
 }
 
 void main(void)
