@@ -23,12 +23,10 @@ char lineaA[7],lineaB[7],lineaC[7],lineaD[7],lineaE[7],lineaF[7],lineaG[7],linea
 
 void fArchivo(void)
 {
-
-int num1,num2,num3;
-
 FILE *archivo;
 
-char nombre_archivo[100]; int ciclo=0,i,j,k;
+char nombre_archivo[100]; int ciclo=0,i,j;
+int num1,num2,num3;
 
 /*Ciclo que abre nuestro archivo si el texto coincide con el nombre "tablero1.txt"*/
     printf("Ingrese nombre archivo: ");
@@ -76,9 +74,6 @@ ttablero=num1;
 nembarcaciones=num2;
 tdisponibles=num3;
 /*FIN*/
-//printf(" %d ttablero",ttablero);
-//printf(" %d nembarcaciones",nembarcaciones);
-//printf(" %d tdisponibles",tdisponibles);
 
 /*Cerramos el archivo*/
 fclose(archivo);
@@ -152,7 +147,7 @@ void fJuego(void)
 		fflush(stdin);
 
 		/*Comprobamos si la columna ingresada es valida si no re-ingresa*/
-		if( !((columna>=1)and(columna<=8)) )
+		if( !((columna>=1)and(columna<=8))and(tablero[f][c]!='E' or tablero[f][c]!='D')  )
 		{
 			printf("Ingrese columna: ");
 		}
@@ -198,17 +193,23 @@ void fJuego(void)
             c=7;
 		}
 		/*FIN*/
+		printf(" %c",tablero[f][c]);salto;
+		printf(" %d",f);salto;
+		printf(" %d",c);salto;
 
 		/*Identificamos si en la cordenada hay una nave*/
 		if( tablero[f][c]=='N' )
 		{
 			tablero[f][c]='D';
 		}
-		else
+		else if ( tablero[f][c]=='A')
 		{
 			tablero[f][c]='E';
 		}
-		LimpiaPantalla(); ImprimeTablero(tablero,ttablero); salto; salto;
+		salto;salto; ImprimeTablero(tablero,ttablero); salto; salto;
+		printf("%c",tablero[f][c]); salto;
+		printf(" %d",f);salto;
+		printf(" %d",c);salto;
 		tdisponibles--;
     }
 
