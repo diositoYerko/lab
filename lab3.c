@@ -18,7 +18,7 @@
 #define or ||
 /*FIN*/
 
-int ttablero; int nembarcaciones; int tdisponibles; int tablero[N][N];
+int ttablero; int nembarcaciones; int tdisponibles; int ttablero; int tablero[N][N];
 char lineaA[7],lineaB[7],lineaC[7],lineaD[7],lineaE[7],lineaF[7],lineaG[7],lineaH[7];
 
 void fArchivo(void)
@@ -28,7 +28,7 @@ int num1,num2,num3;
 
 FILE *archivo;
 
-char nombre_archivo[100]; int ciclo=0; int i; char textoExtraido[N][N];
+char nombre_archivo[100]; int ciclo=0,i,j,k;
 
 /*Ciclo que abre nuestro archivo si el texto coincide con el nombre "tablero1.txt"*/
     printf("Ingrese nombre archivo: ");
@@ -48,30 +48,26 @@ char nombre_archivo[100]; int ciclo=0; int i; char textoExtraido[N][N];
 		}
 
 	}
+
 /*FIN*/
 
-/*Copiamos los datos del archivo a un arreglo por linea*/
-    /*Linea 1*/
+
+/*Obtenemos nuestros datos*/
+    /*Tamaño tablero*/
     fscanf(archivo,"%d", &num1);
-    /*Linea 2*/
+    /*Numero Embarcaciones*/
     fscanf(archivo,"%d", &num2);
-    /*Linea 3*/
-    fscanf(archivo,"%s",lineaA);
-	/*Linea 4*/
-	fscanf(archivo,"%s",lineaB);
-	/*Linea 5*/
-	fscanf(archivo,"%s",lineaC);
-	/*Linea 6*/
-	fscanf(archivo,"%s",lineaD);
-	/*Linea 7*/
-	fscanf(archivo,"%s",lineaE);
-	/*Linea 8*/
-	fscanf(archivo,"%s",lineaF);
-	/*Linea 9*/
-	fscanf(archivo,"%s",lineaG);
-	/*Linea 10*/
-	fscanf(archivo,"%s",lineaH);
-    /*Linea 11*/
+    /*Datos para matriz*/
+    char linea[num1+1];
+    for(i = 0; i < num1; i++)
+    {
+        fscanf(archivo, "%s",linea);
+        for( j = 0 ; j < num1; j++)
+        {
+            tablero[i][j] = linea[j];
+        }
+    }
+    /*Tiros disponibles*/
     fscanf(archivo, "%d", &num3);
 /*FIN*/
 
@@ -80,118 +76,24 @@ ttablero=num1;
 nembarcaciones=num2;
 tdisponibles=num3;
 /*FIN*/
+//printf(" %d ttablero",ttablero);
+//printf(" %d nembarcaciones",nembarcaciones);
+//printf(" %d tdisponibles",tdisponibles);
 
 /*Cerramos el archivo*/
 fclose(archivo);
 /*FIN*/
 
+
 LimpiaPantalla();
 
 }
 
-void rellenarTablero(void)
-{
-
-int i,j,k;
-
-/*Copiamos los datos a la matriz*/
-
-    /*Linea A*/
-    for(i=0;i<N;i++)
-    {
-        for(j=0;j<N;j++)
-        {
-            for(k=0;k<7;k++)
-            {
-                tablero[i][j]=lineaA[k];
-            }
-        }
-    }
-    /*Linea B*/
-    for(i=1;i<N;i++)
-    {
-        for(j=0;j<N;j++)
-        {
-            for(k=0;k<7;k++)
-            {
-                tablero[i][j]=lineaB[k];
-            }
-        }
-    }
-    /*Linea C*/
-    for(i=2;i<N;i++)
-    {
-        for(j=0;j<N;j++)
-        {
-            for(k=0;k<7;k++)
-            {
-                tablero[i][j]=lineaC[k];
-            }
-        }
-    }
-    /*Linea D*/
-    for(i=3;i<N;i++)
-    {
-        for(j=0;j<N;j++)
-        {
-            for(k=0;k<7;k++)
-            {
-                tablero[i][j]=lineaD[k];
-            }
-        }
-    }
-    /*Linea E*/
-    for(i=4;i<N;i++)
-    {
-        for(j=0;j<N;j++)
-        {
-            for(k=0;k<7;k++)
-            {
-                tablero[i][j]=lineaE[k];
-            }
-        }
-    }
-    /*Linea F*/
-    for(i=5;i<N;i++)
-    {
-        for(j=0;j<N;j++)
-        {
-            for(k=0;k<7;k++)
-            {
-                tablero[i][j]=lineaF[k];
-            }
-        }
-    }
-    /*Linea G*/
-    for(i=6;i<N;i++)
-    {
-        for(j=0;j<N;j++)
-        {
-            for(k=0;k<7;k++)
-            {
-                tablero[i][j]=lineaG[k];
-            }
-        }
-    }
-    /*Linea H*/
-    for(i=7;i<N;i++)
-    {
-        for(j=0;j<N;j++)
-        {
-            for(k=0;k<7;k++)
-            {
-                tablero[i][j]=lineaH[k];
-            }
-        }
-    }
-/*FIN*/
-}
 
 void fJuego(void)
 {
     char fila; int f,c,columna,ciclo;
 	ciclo=0;
-
     /*Comienza el juego*/
 	ImprimeTablero(tablero,ttablero); salto; salto;
     while(tdisponibles>0)
@@ -242,7 +144,7 @@ void fJuego(void)
         /*FIN*/
 
 	/*FIN*/
-	
+
 	printf("Ingrese columna: ");
 	while(ciclo==0)
 	{
@@ -260,8 +162,8 @@ void fJuego(void)
 		}
 		/*FIN*/
 	}
-    
-    
+
+
 		/*Asignamos el valor correspondiente al espacio de la matriz*/
 		if( columna==1)
 		{
@@ -315,7 +217,6 @@ void fJuego(void)
 void main(void)
 {
 	fArchivo();
-	rellenarTablero();
 	fJuego();
 }
 
