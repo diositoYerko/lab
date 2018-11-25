@@ -126,7 +126,7 @@ void fValidaPos()
     {
         fIngresaFyC();
 		salto;
-        if( (tablero[f][c]=='X')or(tablero[c][c]=='D') )
+        if( (tablero[f][c]=='X')or(tablero[f][c]=='D') )
 		{
 		 printf("Ya tiraste ahi!");
 		 salto;
