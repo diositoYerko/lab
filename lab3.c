@@ -167,7 +167,7 @@ ciclo=0;
 void fRevisiontablero(void)
 {
 int i,j,count,ciclo;
-int p_Ganadas,p_Perdidas;
+int p_Ganadas=0,p_Perdidas=0;
 char opcion;
 count=0;
 ciclo=0;
