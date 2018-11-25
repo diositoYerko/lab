@@ -9,6 +9,7 @@
 /*Headers*/
 #include <stdio.h>
 #include <stdlib.h>
+#include <ctype.h>
 #include "funcionesParaImprimir.h"
 /*FIN*/
 
@@ -92,6 +93,8 @@ int ciclo=0;
     {
         scanf(" %c",&f);
 		fflush(stdin);
+		if( islower(f) )
+		 f = (toupper(f));
         	if( (f-64>ttablero)or(!(f>='A'&&f<='Z')) )
 			{
 			 printf("Ingresa Fila: ");
@@ -106,10 +109,11 @@ int ciclo=0;
     while(ciclo==0)
     {
         scanf("%d",&c);
+        fflush(stdin);
         if( (c<1)or(c>ttablero) )
 		{
 			printf("Ingresa Columna: ");
-		}   
+		}
         else
         {
             c=c-1;
@@ -206,7 +210,7 @@ ciclo=0;
 		/*FIN*/
 
     /*FIN*/
-    
+
 	/*Ciclo que pregunta si quiere reiniciar juego*/
 	printf("Quieres volver a jugar (S/N)?: ");
     fflush(stdin);
@@ -226,7 +230,7 @@ ciclo=0;
 		}
     }
     /*FIN*/
-	
+
 	/*Si el usuario ingresa S reinicia el juego*/
     if(opcion=='S')
     {
