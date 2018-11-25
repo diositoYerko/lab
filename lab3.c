@@ -18,8 +18,8 @@
 #define or ||
 /*FIN*/
 
-int ttablero; int nembarcaciones; int tdisponibles; int ttablero; int tablero[N][N];
-char lineaA[7],lineaB[7],lineaC[7],lineaD[7],lineaE[7],lineaF[7],lineaG[7],lineaH[7];
+int ttablero,nembarcaciones,ttablero,tdisponibles,c; int tablero[N][N];
+char lineaA[7],lineaB[7],lineaC[7],lineaD[7],lineaE[7],lineaF[7],lineaG[7],lineaH[7],f;
 int pGanadas=0;
 int pPerdidas=0;
 
@@ -51,7 +51,6 @@ int num1,num2,num3;
 
 /*FIN*/
 
-
 /*Obtenemos nuestros datos*/
     /*Tamaño tablero*/
     fscanf(archivo,"%d", &num1);
@@ -80,132 +79,73 @@ tdisponibles=num3;
 /*Cerramos el archivo*/
 fclose(archivo);
 /*FIN*/
-
-
 LimpiaPantalla();
-
 }
 
+void fIngresaFyC()
+{
+int ciclo=0;
 
+	/*Se solicitan ingresos de los datos*/
+	printf("Ingresa Fila: ");
+    while(ciclo==0)
+    {
+        scanf(" %c",&f);
+		fflush(stdin);
+        	if( (f-64>ttablero)or(!(f>='A'&&f<='Z')) )
+			{
+			 printf("Ingresa Fila: ");
+			}
+        	else
+        	{
+             f=f-65;
+             break;
+        	}
+    }
+	printf("Ingresa Columna: ");
+    while(ciclo==0)
+    {
+        scanf("%d",&c);
+        if( (c<1)or(c>ttablero) )
+		{
+			printf("Ingresa Columna: ");
+		}   
+        else
+        {
+            c=c-1;
+            break;
+        }
+    }
+   /*FIN*/
+}
+
+void fValidaPos()
+{
+	/*Validamos si ya hemos ocupado la posicion anteriormente*/
+    do
+    {
+        fIngresaFyC();
+		salto;
+        if( (tablero[f][c]=='X')or(tablero[c][c]=='D') )
+		{
+		 printf("Ya tiraste ahi!");
+		 salto;
+		}
+    } while( (tablero[f][c]=='X')or(tablero[f][c]=='D') );
+    /*FIN*/
+}
 void fJuego(void)
 {
-    char fila; int f,c,columna,ciclo;
-	ciclo=0;
+int ciclo;
+ciclo=0;
+
     /*Comienza el juego*/
 	ImprimeTablero(tablero,ttablero); salto; salto;
     while(tdisponibles>0)
     {
     printf("Total barcos: %d - Tiros Disponibles: %d",nembarcaciones,tdisponibles); salto; salto;
-
-	/*Fila*/
-
-	printf("Ingrese fila: ");
-	while(ciclo==0)
-	{
-    	scanf(" %c", &fila);
-		fflush(stdin);
-
-		/*Comprobamos si fila corresponde a una letra, si no re-ingresa*/
-		if( !( (fila>='A'and fila<='Z') or (fila>='a' or fila<='z') ) )
-		{
-			printf("Ingrese fila: ");
-		}
-		else
-		{
-			break;
-		}
-		/*FIN*/
-	}
-
-		/*FIN*/
-
-        /*Asignamos el valor correspondiente al espacio de la matriz*/
-
-		//1
-        if( (fila=='A')or(fila=='a') )
-            f=0;
-        if( (fila=='B')or(fila=='b') )
-            f=1;
-        if( (fila=='C')or(fila=='c') )
-            f=2;
-        if( (fila=='D')or(fila=='d') )
-            f=3;
-        if( (fila=='E')or(fila=='e') )
-            f=4;
-        if( (fila=='F')or(fila=='f') )
-            f=5;
-        if( (fila=='G')or(fila=='g') )
-            f=6;
-        if( (fila=='H')or(fila=='h') )
-            f=7;
-		if( (fila=='I')or(fila=='i') )
-            f=8;
-		if( (fila=='J')or(fila=='j') )
-            f=9;
-		if( (fila=='K')or(fila=='k') )
-            f=10;
-		if( (fila=='L')or(fila=='l') )
-            f=11;
-		if( (fila=='M')or(fila=='m') )
-            f=12;
-		if( (fila=='N')or(fila=='n') )
-            f=13;
-		if( (fila=='O')or(fila=='o') )
-            f=14;
-		if( (fila=='P')or(fila=='p') )
-            f=15;
-		if( (fila=='Q')or(fila=='q') )
-            f=16;
-		if( (fila=='R')or(fila=='r') )
-            f=17;
-		if( (fila=='S')or(fila=='s') )
-            f=18;
-		if( (fila=='T')or(fila=='t') )
-            f=19;
-		if( (fila=='U')or(fila=='u') )
-            f=20;
-		if( (fila=='V')or(fila=='v') )
-            f=21;
-		if( (fila=='W')or(fila=='w') )
-            f=22;
-		if( (fila=='X')or(fila=='x') )
-            f=23;
-		if( (fila=='Y')or(fila=='y') )
-            f=24;
-		if( (fila=='Z')or(fila=='z') )
-            f=25;
-
-        /*FIN*/
-
-	/*FIN*/
-
-	printf("Ingrese columna: ");
-	while(ciclo==0)
-	{
-    	scanf("%d",&columna);
-		fflush(stdin);
-
-		/*Comprobamos si la columna ingresada es valida si no re-ingresa*/
-		if( (columna<1) or (columna>ttablero) )
-		{
-			printf("Ingrese columna: ");
-		}
-		if( (tablero[f][c]=='X') or (tablero[f][c]=='D') )
-		{
-			printf("Ingrese columna: ");
-		}
-		else
-		{
-			break;
-		}
-		/*FIN*/
-	}
-
-		/*Asignamos el valor correspondiente al espacio de la matriz*/
-		c=columna-1;;
-		/*FIN*/
-
-		/*Identificamos si en la cordenada hay una nave*/
+		/*Identificamos si en la cordenada hay una nave o no*/
+		fValidaPos();
 		if( tablero[f][c]=='N' )
 		{
 			tablero[f][c]='D';
@@ -214,17 +154,24 @@ void fJuego(void)
 		{
 			tablero[f][c]='X';
 		}
+		/*FIN*/
+
+		/*Imprimimos tablero actualizado y nos queda un tiro menos*/
 		LimpiaPantalla();ImprimeTablero(tablero,ttablero);salto;salto;
 		tdisponibles--;
+		/*FIN*/
     }
+	LimpiaPantalla();
 }
 
-void fRevisiontablero()
+void fRevisiontablero(void)
 {
 int i,j,count,ciclo;
+int p_Ganadas,p_Perdidas;
 char opcion;
 count=0;
 ciclo=0;
+
 	/*Chequeamos pos por pos*/
 	for(i=0;i<ttablero;i++)
 	{
@@ -240,58 +187,55 @@ ciclo=0;
 
 	/*Termina el juego*/
 	if(count==0)
-	{
-	    LimpiaPantalla();
-		Ganaste();
-		pGanadas++;
-		salto;salto;
-		printf("Has ganado %d partida.",pGanadas);salto;
-		printf("Has perdido %d partida.",pPerdidas);salto;salto;
-		printf("Quieres volver a jugar (S/N)?: ");
-			while(ciclo==0)
-			{
-    			scanf(" %c", &opcion);
-				fflush(stdin);
-					if(opcion!='S' or opcion!='N')
-					{
-						printf("Quieres volver a jugar (S/N)?: ");
-					}
-					else
-					{
-						break;
-					}
-			}
-	}
-	if(count!=0)
-	{
-	    LimpiaPantalla();
-		Perdiste();
-		pPerdidas++;
-		salto;salto;
-		printf("Has ganado %d partida.",pGanadas);salto;
-		printf("Has perdido %d partida.",pPerdidas);salto;salto;
-		printf("Quieres volver a jugar (S/N)?: ");
-			while(ciclo==0)
-			{
-                scanf(" %c", &opcion);
-				fflush(stdin);
-					if( (opcion!='S') or (opcion!='N') )
-					{
-						printf("Quieres volver a jugar (S/N)?: ");
-					}
-					else
-					{
-						break;
-					}
-			}
-	}
+    {
+		LimpiaPantalla();
+        Ganaste();
+        p_Ganadas++;
+    }
+    else
+    {
+		LimpiaPantalla();
+        Perdiste();
+        p_Perdidas++;
+    }
+    	/*Se muestran resultados de partidas*/
+    	salto;salto;
+    	printf("Has ganado %d partida.", p_Ganadas);salto;
+    	printf("Has perdido %d partida.", p_Perdidas);salto;
+    	salto;
+		/*FIN*/
 
-	if(opcion=='S')
-	{
-		fArchivo();
-		fJuego();
-        fRevisiontablero();
-	}
+    /*FIN*/
+    
+	/*Ciclo que pregunta si quiere reiniciar juego*/
+	printf("Quieres volver a jugar (S/N)?: ");
+    fflush(stdin);
+    scanf("%c", &opcion);
+
+    while( !(opcion=='S'or opcion=='N') )
+    {
+     fflush(stdin);
+     scanf("%c", &opcion);
+     	if( !(opcion=='S'or opcion=='N') )
+       	{
+       	 printf("Quieres volver a jugar (S/N)?: ");
+        }
+		else
+		{
+		 break;
+		}
+    }
+    /*FIN*/
+	
+	/*Si el usuario ingresa S reinicia el juego*/
+    if(opcion=='S')
+    {
+     LimpiaPantalla();
+     fArchivo();
+	 fJuego();
+     fRevisiontablero();
+    }
+	/*FIN*/
 }
 
 void main(void)
